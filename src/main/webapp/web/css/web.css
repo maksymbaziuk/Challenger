@@ -1,0 +1,24 @@
+.left-column {
+    float:left;
+    width: 49%;
+    background:#9c9;
+}
+
+.right-column {
+    float:right;
+    width: 49%;
+    background:#c9c;
+}
+
+.border-form {
+    border: 1px solid black;
+}
+
+body .right-column table td {
+    border: 1px solid black;
+}
+
+#header {
+    width : 100%
+    background-color: blue;
+}

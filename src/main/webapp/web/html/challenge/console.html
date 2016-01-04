@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge admin console</title>
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/web.js"></script>
+    <script src="/static/js/json.human.js"></script>
+    <link href="/static/css/web.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div id="header">
+    <a href="/static/home.html">Home</a>
+</div>
+<div class="left-column">
+    <p>REST Service tests</p>
+    <div class="border-form">
+        <p>Create challenge
+        <form id="createForm" method="PUT" action="/challenge/create">
+            <label for="create-short-input">Short description: </label>
+            <input id="create-short-input" type="text" name="shortDescription" required>
+            <br>
+            <label for="create-long-input">Long description: </label>
+            <textarea id="create-long-input" name="longDescription" required></textarea>
+            <br>
+            <label for="create-start-date-input">Start date: </label>
+            <input type="date" id="create-start-date-input" name="startDate">
+            <br>
+            <label for="create-deadline-input">Till: </label>
+            <input type="date" id="create-deadline-input" name="deadline" required>
+            <br>
+            <label for="create-id-input">User id: </label>
+            <input type="number" id="create-id-input" name="userId">
+            <br>
+            <input type="button" id="create-button" value="Create">
+            <input class="custom-submit" type="submit" name="submit" style="display:none">
+        </form>
+        </p>
+    </div>
+    <div class="border-form">
+        <p>Update challenge
+        <form id="updateForm" method="POST" action="/challenge/update">
+            <label for="update-short-input">Short description: </label>
+            <input id="update-short-input" type="text" name="shortDescription" required>
+            <br>
+            <label for="update-long-input">Long description: </label>
+            <textarea id="update-long-input" name="longDescription" required></textarea>
+            <br>
+            <label for="update-start-date-input">Start date: </label>
+            <input type="date" id="update-start-date-input" name="startDate">
+            <br>
+            <label for="update-deadline-input">Till: </label>
+            <input type="date" id="update-deadline-input" name="deadline" required>
+            <br>
+            <label for="update-id-input">Challenge id: </label>
+            <input type="number" id="update-id-input" name="id">
+            <br>
+            <label for="update-status-input">Challenge id: </label>
+            <select id="update-status-input" name="challengeStatus">
+                <option value="1" selected>CREATED</option>
+                <option value="2">STARTED</option>
+                <option value="3">DONE</option>
+                <option value="4">CANCELLED</option>
+            </select>
+            <br>
+            <input type="button" id="update-button" value="Create">
+            <input class="custom-submit" type="submit" name="submit" style="display:none">
+        </form>
+        </p>
+    </div>
+    <div class="border-form">
+        <p>Remove challenge
+            <form id="removeForm" method="post" action="/challenge/remove">
+    <label for="remove-user-id-input">Id: </label>
+    <input id="remove-user-id-input" type="number" name="id">
+    <br>
+    <input type="button" id="remove-button" value="Remove challenge">
+    <input class="custom-submit" type="submit" name="submit" style="display:none">
+    </form>
+        </p>
+    </div>
+    <div class="border-form">
+        <p>Find all challenges
+        <form id="findAllForm" method="get" action="/challenge/all">
+            <input type="button" id="find-all-button" value="Find">
+            <input class="custom-submit" type="submit" name="submit" style="display:none">
+        </form>
+        </p>
+    </div>
+</div>
+<div class="right-column">
+    Results
+</div>
+</body>
+</html>

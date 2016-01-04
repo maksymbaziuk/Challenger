@@ -1,0 +1,29 @@
+User:
+- any action with user;
+Challenge:
+- simple challenge with start date - now, and simple fields
+- actions on challenge: create, update, find all, remove(from user and challenge itself)
+Entity:
+- create entity (with linking to a challenge);
+- find entity by id;
+- find all the enteties.
+
+Security:
+Added Interceptor to restrict acces to not logged in users:
+/entity/**
+/challenge/**
+
+Strick service structure for User and Challenge. Rewrited DAOs to be independent. Added Challnge tools.
+
+Changes log:
+v0.0.4:
+- migrated to Java8 dates: LocalDate;
+- customized Jackson object mapper to support fixed date format in JSON responses;
+- added Registration Date to User entity (without validation);
+
+v.0.0.5:
+- moved to Java-based Spring configuration
+
+v.0.0.6
+- Added Java-based Spring Security configutation
+- Added Spring Security login/logout support with custom response handlers
