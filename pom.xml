@@ -178,10 +178,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <outputDirectory/>
-                </configuration>
+                <version>2.4.2</version>
+                <executions>
+                    <execution>
+                        <id>default-copy-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/classes/web/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/webapp/web</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Compiler -->

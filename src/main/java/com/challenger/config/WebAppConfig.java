@@ -28,7 +28,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(env.getRequiredProperty("static.content.pattern")).addResourceLocations("/web/");
+        registry.addResourceHandler(env.getRequiredProperty("static.content.pattern")).addResourceLocations("classpath:/web/");
     }
 
     @Override

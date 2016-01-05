@@ -21,7 +21,7 @@ public class ChallengerRunner {
 
         WebAppContext webapp = new WebAppContext();
         webapp.setResourceBase("src/main/webapp");
-        webapp.setContextPath("/");
+        webapp.setContextPath("/*");
         webapp.setConfigurations(new Configuration[]{
                 new WebXmlConfiguration(),
                 new AnnotationConfiguration(){
