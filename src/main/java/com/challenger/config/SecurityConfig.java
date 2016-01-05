@@ -1,6 +1,8 @@
 package com.challenger.config;
 
 import com.challenger.security.EmailUserDetailsService;
+import com.challenger.security.authentication.CustomAccessDeniedHandler;
+import com.challenger.security.authentication.CustomAuthenticationRequiredHandler;
 import com.challenger.security.authentication.CustomAuthenticationSuccessHandler;
 import com.challenger.security.authentication.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomAuthenticationSuccessHandler authenticationSuccessHandler;
     @Autowired
     private CustomLogoutSuccessHandler logoutSuccessHandler;
+    @Autowired
+    private CustomAccessDeniedHandler accessDeniedHandler;
+    @Autowired
+    private CustomAuthenticationRequiredHandler authenticationRequiredHandler;
 
     @Bean
     public BCryptPasswordEncoder getShaPasswordEncoder(){
@@ -58,8 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 //                .antMatchers("/user/**").access("hasRole('ADMIN') or hasRole('USER')")
-                .antMatchers("/challenge/**").access("hasRole('ADMIN')")
-                .antMatchers("/event/**").access("hasRole('ADMIN') or hasRole('ROLE_USER')")
+                .antMatchers("/challenge/**").hasRole("ADMIN")
+                .antMatchers("/event/**").hasAnyRole(new String[]{"ADMIN","USER"})
                 .antMatchers("/user/login**").permitAll()
                 .antMatchers("/user/register").permitAll()
                 .and()
@@ -67,11 +73,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .passwordParameter("password")
                 .usernameParameter("username")
-                .successHandler(authenticationSuccessHandler)
+                .successHandler(authenticationSuccessHandler).failureHandler(authenticationRequiredHandler)
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessHandler(logoutSuccessHandler);
+                .logoutSuccessHandler(logoutSuccessHandler)
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
         //TODO Security part. Look on this later
         http.csrf().disable();
     }

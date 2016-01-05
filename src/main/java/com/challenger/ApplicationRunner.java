@@ -15,9 +15,9 @@ import org.springframework.web.WebApplicationInitializer;
  * Created by Maksym_Baziuk on 16.11.2015.
  */
 public class ApplicationRunner {
-    public static void main(String[] args) throws Exception{
-        Server server = new Server(8080);
 
+    public static void main(String[] args) throws Exception{
+        Server server = new Server(80);
         WebAppContext webapp = new WebAppContext();
         webapp.setResourceBase("/");
         webapp.setContextPath("/*");
@@ -36,11 +36,9 @@ public class ApplicationRunner {
                     }
                 }
         });
-
         server.setHandler(webapp);
         server.start();
         System.out.println("Application started!");
         server.join();
     }
-
 }
